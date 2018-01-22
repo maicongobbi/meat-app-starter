@@ -55,10 +55,9 @@ export class OrderComponent implements OnInit {
       .map((item: CartItem) => new OrderItem(item.quantity, item.menuItem.id))
     //o subscribe é o ato de se increver no observable e temos q passar algo para que receba a resposta
     this.orderService.checkOrder(order)
-      .subscribe((orderId: string) => {
-        // MUDAR PARA qundo IMPLEMENTAR o SUMÁRIO:
-        // his.router.navigate(['/order-summary'])        
-        this.router.navigate(['/home'])
+      .subscribe((orderId: string) => {        
+        this.router.navigate(['/order-summary'])        
+        
         this.orderService.clear()
       })
     console.log(order)

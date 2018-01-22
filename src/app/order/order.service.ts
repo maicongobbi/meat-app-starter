@@ -49,5 +49,6 @@ export class OrderService {
       .map(response => response.json())
       .map(order => order.id)
   }
+  //.map(order => order.id) - recebe um order e devolver um order.id
 
 }
