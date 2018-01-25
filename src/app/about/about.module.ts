@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
-import { AboutComponent } from './about.component';
+
 
 import { RouterModule, Routes } from '@angular/router';
+import { AboutComponent } from 'app/about/about.component';
 
 //path '' é o caminho default
 const ROUTES: Routes = [
