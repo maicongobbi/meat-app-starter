@@ -8,13 +8,13 @@ import { log } from 'util';
 })
 export class InputComponent implements OnInit, AfterContentInit {
 
-  @Input() label: string
-  @Input() errorMessage: string
+  @Input() label: string;
+  @Input() errorMessage: string;
 
-  input: any
+  input: any;
 
-  @ContentChild(NgModel) model: NgModel
-  @ContentChild(FormControlName) control: FormControlName
+  @ContentChild(NgModel) model: NgModel;
+  @ContentChild(FormControlName) control: FormControlName;
 
   constructor() {}
 
@@ -25,22 +25,22 @@ export class InputComponent implements OnInit, AfterContentInit {
     this.input = this.model || this.control;
 
     if(!this.input){
-      console.log('Esse componente precisa ser usado com uma diretiva ngModel ou formControlName')
-//      throw new Error('Esse componente precisa ser usado com uma diretiva ngModel ou formControlName')
+      console.log('Esse componente precisa ser usado com uma diretiva ngModel ou formControlName');
+     // throw new Error('Esse componente precisa ser usado com uma diretiva ngModel ou formControlName')
     }
   }
 
   hasSuccess(): boolean {
-    console.log(this.input)
+    
     if (this.input)
-      return this.input.valid && (this.input.dirty || this.input.touched)
+      return this.input.valid && (this.input.dirty || this.input.touched);
     return false;
   }
 
   hasError(): boolean {
-     console.log(this.input)
+    
     if (this.input)
-      return this.input.invalid && (this.input.dirty || this.input.touched)
+      return this.input.invalid && (this.input.dirty || this.input.touched);
     return false;
   }
 }

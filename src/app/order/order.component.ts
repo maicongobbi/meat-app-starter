@@ -6,7 +6,7 @@ import {RadioOption} from '../shared/radio/radio-option.model'
 import {OrderService} from './order.service'
 import {CartItem} from '../restaurant-detail/shopping-cart/cart-item.model'
 import {Order, OrderItem} from './order.model';
-import {FormGroup, FormBuilder, Validators} from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, AbstractControl} from '@angular/forms';
 
 
 @Component({
@@ -15,9 +15,12 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms';
 })
 export class OrderComponent implements OnInit {
 
-  //propriedade que representa o formulário
- 
-orderForm: FormGroup;
+  emailPattern = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+
+  numberPattern = /^[0-9]*$/
+
+  //propriedade que representa o formulário 
+  orderForm: FormGroup;
 
   delivery = 8
 
@@ -34,18 +37,45 @@ orderForm: FormGroup;
 
   ngOnInit() {
     this.orderForm = this.formBuilder.group({
-      name: this.formBuilder.control('', [ Validators.required, Validators.minLength(3) ]),
-      email: this.formBuilder.control(''),
-      emailConfirmation: this.formBuilder.control(''),
-      address: this.formBuilder.control('', [ Validators.required, Validators.minLength(3) ]),
-      number: this.formBuilder.control(''),
+      name: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
+      email: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
+      emailConfirmation: this.formBuilder.control('', [Validators.required, Validators.pattern(this.emailPattern)]),
+      address: this.formBuilder.control('', [Validators.required, Validators.minLength(5)]),
+      number: this.formBuilder.control('', [Validators.required, Validators.pattern(this.numberPattern)]),
       optionalAddres: this.formBuilder.control(''),
-      paymentOption: this.formBuilder.control('')
-     
+      paymentOption: this.formBuilder.control('', [Validators.required])
+      }, {validator: OrderComponent.equalsTo})
+      
+  }
+  
+  /**
+   * essa validação retorna para o form group que a associamos
+   */
+  static equalsTo(group: AbstractControl): {[key: string]: boolean }{
+    //os valores aqui passados são os mesmos declarados acima e não o name do form
+    const email = group.get('email');
+    const emailConfirmation = group.get('emailConfirmation');
     
-    })
+    console.log("equals")
+    console.log(email.value)
+    console.log(emailConfirmation.value)
+    
+    if(!email || !emailConfirmation)
+      return undefined;
+    
+    if(email.value !== emailConfirmation.value){
+    //retorno de uma chave, podemos criar qq coisa, criamos essa chave emailsnotmatrch
+    console.log("fim equals")
+      return {emailsNotMatch:true};
+    
+    }
+    
+    return undefined;
+    
+    
   }
 
+  
   itemsValue(): number {
     return this.orderService.itemsValue()
   }
