@@ -8,7 +8,7 @@ import { ShoppingCartService } from 'app/restaurant-detail/shopping-cart/shoppin
     declarations: [],
     imports: [ CommonModule ],
     exports: [],
-    providers: [OrderService, RestaurantsService, ShoppingCartService],
+    providers: [OrderService, RestaurantsService, ShoppingCartService]
 })
 
 export class CoreModule{
