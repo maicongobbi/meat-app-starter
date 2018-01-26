@@ -17,6 +17,7 @@ import {ReviewsComponent} from './restaurant-detail/reviews/reviews.component';
 import {OrderSummaryComponent} from './order-summary/order-summary.component';
 import { SharedModule } from 'app/shared/shared.module';
 import { CoreModule } from 'app/core/core.module';
+import { PreloadAllModules } from '@angular/router/src/router_preloader';
 
 
 @NgModule({
@@ -36,13 +37,16 @@ import { CoreModule } from 'app/core/core.module';
   imports: [
     BrowserModule,
     HttpModule,
-    CoreModule,
-    SharedModule,    
-    RouterModule.forRoot(ROUTES)
+   // CoreModule,
+    SharedModule.forRoot(),    
+    RouterModule.forRoot(ROUTES, {preloadingStrategy:PreloadAllModules})
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
 })
+
+//SharedModule.forRoot(),    importa ele e mais os providers
+//preloadingStrategy:PreloadAllModules carrega préviamente os módulos
 // o provider serve para servir instâncias para aqueles que querem injetá-lo em seus componentes
 // módulo possuem uma injeção de dependência própria
 export class AppModule {}
