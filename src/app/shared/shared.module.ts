@@ -8,12 +8,13 @@ import { ModuleWithProviders } from "@angular/core";
 import { OrderService } from "app/order/order.service";
 import { RestaurantsService } from "app/restaurants/restaurants.service";
 import { ShoppingCartService } from "app/restaurant-detail/shopping-cart/shopping-cart.service";
+import { SnackbarComponent } from './messages/snackbar/snackbar.component';
 
 //exports são os componentes do nosso módulo que podem ser exportados
 @NgModule({
-    declarations:[InputComponent, RadioComponent, RatingComponent],
+    declarations:[InputComponent, RadioComponent, RatingComponent, SnackbarComponent],
     imports:[FormsModule, ReactiveFormsModule, CommonModule],
-    exports: [InputComponent, RadioComponent, RatingComponent, 
+    exports: [InputComponent, RadioComponent, RatingComponent, SnackbarComponent, 
         FormsModule, ReactiveFormsModule, CommonModule]
 })
 

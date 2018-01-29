@@ -38,10 +38,6 @@
     "no-use-before-declare": true,
     "no-var-keyword": true,
     "object-literal-sort-keys": false,
-    "quotemark": [
-      true,
-      "single"
-    ],
     "radix": true,
     "triple-equals": [
       true,
