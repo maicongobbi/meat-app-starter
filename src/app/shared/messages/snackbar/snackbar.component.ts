@@ -1,5 +1,7 @@
+import {NotificationService} from "../notification.service";
 import {trigger, state, style, transition, animate} from "@angular/animations";
 import {Component, OnInit} from '@angular/core';
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'mt-snackbar',
@@ -22,12 +24,26 @@ import {Component, OnInit} from '@angular/core';
   ]
 })
 export class SnackbarComponent implements OnInit {
+  /**
+   * se inscreve no notService para poder receber as mensagens
+   */
+  constructor(private notificationService: NotificationService) {}
 
-  message: string = "Hello dear";
-  snackVisibility: string ="hidden"
-  constructor() {}
+  message: string;
+  snackVisibility: string = "hidden"
+
 
   ngOnInit() {
+    /**
+     * se inscreve nesse serviço e fica aguardando uma mensagem
+     * subscribe escuta as mensagens
+     */
+    this.notificationService.notifier.subscribe(message=>{
+      this.message = message
+      this.snackVisibility = 'visible'
+      Observable.timer(3000).subscribe(timer=>
+      this.snackVisibility = 'hidden')
+    })
   }
 
 }
