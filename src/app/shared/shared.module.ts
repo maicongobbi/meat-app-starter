@@ -1,15 +1,17 @@
+import { OrderService } from "../order/order.service";
+import { ShoppingCartService } from "../restaurant-detail/shopping-cart/shopping-cart.service";
+import { RestaurantsService } from "../restaurants/restaurants.service";
+import { InputComponent } from "./input/input.component";
 import { NotificationService } from "./messages/notification.service";
 import { NgModule } from "@angular/core";
-import { InputComponent } from "app/shared/input/input.component";
-import { RadioComponent } from "app/shared/radio/radio.component";
-import { RatingComponent } from "app/shared/rating/rating.component";
+
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { ModuleWithProviders } from "@angular/core";
-import { OrderService } from "app/order/order.service";
-import { RestaurantsService } from "app/restaurants/restaurants.service";
-import { ShoppingCartService } from "app/restaurant-detail/shopping-cart/shopping-cart.service";
+
 import { SnackbarComponent } from './messages/snackbar/snackbar.component';
+import { RadioComponent } from "./radio/radio.component";
+import { RatingComponent } from "./rating/rating.component";
 
 //exports são os componentes do nosso módulo que podem ser exportados
 @NgModule({

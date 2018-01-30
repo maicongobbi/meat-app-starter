@@ -1,8 +1,8 @@
+import { SharedModule } from "../shared/shared.module";
+import { DeliveryCostsComponent } from "./delivery-costs/delivery-costs.component";
+import { OrderItemsComponent } from "./order-items/order-items.component";
+import { OrderComponent } from "./order.component";
 import { NgModule } from "@angular/core";
-import { OrderComponent } from "app/order/order.component";
-import { OrderItemsComponent } from "app/order/order-items/order-items.component";
-import { DeliveryCostsComponent } from "app/order/delivery-costs/delivery-costs.component";
-import { SharedModule } from "app/shared/shared.module";
 import { Routes, RouterModule } from "@angular/router";
 
 const ROUTES: Routes = [

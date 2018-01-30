@@ -1,3 +1,4 @@
+
 import {MenuItem} from './menu-item.model';
 import {trigger, transition, style, animate, state} from "@angular/animations";
 import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
