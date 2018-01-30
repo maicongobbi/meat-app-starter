@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'mt-order-summary',
@@ -6,9 +6,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderSummaryComponent implements OnInit {
 
-  constructor() { }
+  rated: boolean;
+
+  constructor() {}
 
   ngOnInit() {
   }
 
+  rate() {
+    this.rated = true;
+  }
 }

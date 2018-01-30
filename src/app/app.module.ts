@@ -22,6 +22,7 @@ import { PreloadAllModules } from '@angular/router';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MenuComponent } from "./restaurant-detail/menu/menu.component";
 import { SharedModule } from "./shared/shared.module";
+import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 
 
 @NgModule({
@@ -47,7 +48,10 @@ import { SharedModule } from "./shared/shared.module";
     SharedModule.forRoot(),    
     RouterModule.forRoot(ROUTES, {preloadingStrategy:PreloadAllModules})
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-BR'}],
+  /** location strategy e o hash location usa essa estratégia para os casos em que a pessoa salva a urle depois quer acessá-la
+  ao fazer isso será acrescido um # no caminho da url, indicando para o servidor que a requisição vai iniciar na index e seguir 
+  o fluxo até o caminho indicado */
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},{provide: LOCALE_ID, useValue: 'pt-BR'}],
   bootstrap: [AppComponent]
 })
 
