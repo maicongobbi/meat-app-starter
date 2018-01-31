@@ -17,8 +17,12 @@ export class RestaurantsService {
 
     constructor(private http: Http){}
 
-    restaurants(): Observable<Restaurant[]> {
-      return this.http.get(`${MEAT_API}/restaurants`)
+  //params:{q:search} - essa consulta faz como se fosse um sql no json, 
+  //buscando em todos os atrributos do objetos quais dão match com o search
+  
+  //já se passássemos algo do tipo {name: search } seria uma busca integral com o que se busca e o nome do att, exemplo joao = joao
+    restaurants(search?:string): Observable<Restaurant[]> {
+      return this.http.get(`${MEAT_API}/restaurants`, {params: {q: search}})
         .map(response => response.json())
         .catch(ErrorHandler.handleError)
     }
