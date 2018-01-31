@@ -4,6 +4,7 @@ import {Restaurant} from './restaurant/restaurant.model'
 import {RestaurantsService} from './restaurants.service'
 import {trigger, state, style, transition, animate} from "@angular/animations";
 import {FormBuilder, FormGroup, FormControl} from "@angular/forms";
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'mt-restaurants',
@@ -52,8 +53,11 @@ export class RestaurantsComponent implements OnInit {
       debounceTime(500).
       distinctUntilChanged().
       do(searchTerm => console.log(searchTerm)).
+      
       switchMap(searchTerm =>
-        this.restaurantsService.restaurants(searchTerm)).
+        this.restaurantsService.
+          restaurants(searchTerm).
+          catch(error=>Observable.from([]))). //em caso de erro retorna um array vazio
           subscribe(restaurants =>
             this.restaurants = restaurants);
 
