@@ -1,7 +1,7 @@
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule, LOCALE_ID} from '@angular/core';
-import {HttpModule} from '@angular/http';
+
 import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {ROUTES} from './app.routes'
@@ -23,6 +23,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { MenuComponent } from "./restaurant-detail/menu/menu.component";
 import { SharedModule } from "./shared/shared.module";
 import { LocationStrategy, HashLocationStrategy } from "@angular/common";
+import { HttpClientModule } from "@angular/common/http";
 
 
 @NgModule({
@@ -43,7 +44,7 @@ import { LocationStrategy, HashLocationStrategy } from "@angular/common";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    HttpModule,
+    HttpClientModule,
    // CoreModule,
     SharedModule.forRoot(),    
     RouterModule.forRoot(ROUTES, {preloadingStrategy:PreloadAllModules})
